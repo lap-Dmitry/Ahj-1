@@ -9,34 +9,40 @@ module.exports = {
     publicPath: '/',
   },
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+				},
       },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
+			{
+				test: /\.html$/,
+				use: [
+					{
+						loader: 'html-loader',
           },
         ],
       },
-      {
-        test: /\.css$/,
-        use: [
+			{
+				test: /\.(?:ico|png|jpg|jpeg|gif)$/i,
+					
+				type:'asset/resource',
+					
+      },
+			{
+				test: /\.css$/,
+				use: [
           MiniCssExtractPlugin.loader, 'css-loader',
         ],
       },
-      {
-        test: /\.(jpg|png|svg|jpeg|gif)$/,
-        type: 'asset/resource',
+			{
+				test: /\.svg$/,
+				type: 'asset/resource',
       },
     ],
-  },
+	},
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
